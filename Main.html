@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School Library</title>
+
+<style>
+/* ===== Общие стили ===== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url(pexels-ali-haider-2158504419-35600382.jpg) center/cover no-repeat;
+    height: 100vh;
+    color: white;
+}
+
+/* затемнение */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+}
+
+/* страницы */
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto; /* прокрутка, если много карточек */
+}
+
+#libraryPage {
+    justify-content: flex-start; /* размещаем контент сверху */
+    padding-top: 80px;           /* отступ сверху */
+    padding-bottom: 40px;        /* отступ снизу */
+}
+
+/* скрытая страница */
+.hidden {
+    display: none;
+}
+
+/* ===== Главная ===== */
+.home h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.home p {
+    max-width: 500px;
+    text-align: center;
+    color: #ddd;
+}
+
+.start-btn {
+    margin-top: 20px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background: white;
+    color: #333;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.start-btn:hover {
+    background: #f0f0f0;
+}
+
+/* ===== Книги ===== */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 50px;
+    width: 80%;
+    padding: 0px;
+    box-sizing: border-box;
+    justify-items: center; /* центруем карточки в колонках */
+}
+
+/* карточки */
+.card {
+    width: 100%;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 15px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.card h3 {
+    margin: 10px 0 5px 0;
+}
+
+.card button {
+    margin-top: 10px;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.card button:hover {
+    background: #f0f0f0;
+}
+
+/* кнопка назад */
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: rgba(255,255,255,0.4);
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<!-- 🔹 Главная страница -->
+<div class="page home" id="homePage">
+    <h1>📚 School Library</h1>
+    <p>
+        Добро пожаловать в онлайн библиотеку нашей школы!  
+        Здесь можно найти материалы и книги по различным предметам: физика, математика, химия и другие.
+    </p>
+    <button class="start-btn" onclick="openLibrary()">Книги</button>
+</div>
+
+<!-- 🔹 Страница с предметами -->
+<div class="page hidden" id="libraryPage">
+
+    <button class="back-btn" onclick="goHome()">← Главное меню</button>
+
+    <div class="container">
+
+        <div class="card">
+            <img src="CS.png" alt="Информатика">
+            <h3>Информатика</h3>
+            <button>Открыть</button>
+        </div>
+
+        <div class="card">
+            <img src="physics.png" alt="Физика" >
+            <h3>Физика</h3>
+            <button>Открыть</button>
+        </div>
+
+        <div class="card">
+            <img src="Gemini_Generated_Image_t21q71t21q71t21q.png" alt="Математика" >
+            <h3>Математика</h3>
+            <button>Открыть</button>
+        </div>
+
+        <div class="card">
+            <img src="chem.png" alt="Химия">
+            <h3>Химия</h3>
+            <button>Открыть</button>
+        </div>
+
+        <div class="card">
+            <img src="Bio.png" alt="Биология">
+            <h3>Биология</h3>
+            <button>Открыть</button>
+        </div>
+
+        <div class="card">
+            <img src="Litra.png" alt="Литература">
+            <h3>Литература</h3>
+            <button>Открыть</button>
+        </div>
+
+        <div class="card">
+            <img src="RL.png" alt="Русский язык">
+            <h3>Русский язык</h3>
+            <button>Открыть</button>
+        </div>
+
+        <div class="card">
+            <img src="EL.png" alt="Английский язык">
+            <h3>Английский язык</h3>
+            <button>Открыть</button>
+        </div>
+
+        <div class="card">
+            <img src="Tl.png" alt="Государственный язык">
+            <h3>Государственный язык</h3>
+            <button>Открыть</button>
+        </div>
+
+        <div class="card">
+            <img src="Geo.png" alt="География">
+            <h3>География</h3>
+            <button>Открыть</button>
+        </div>
+
+        <div class="card">
+            <img src="OGPT.png" alt="ОГП">
+            <h3>ОГП</h3>
+            <button>Открыть</button>
+        </div>
+
+        <div class="card">
+            <img src="WH.png" alt="Общая История">
+            <h3>Общая История</h3>
+            <button>Открыть</button>
+        </div>
+
+        <div class="card">
+            <img src="HTP.png" alt="ИТН">
+            <h3>ИТН</h3>
+            <button>Открыть</button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- 🔥 JS -->
+<script>
+function openLibrary() {
+    document.getElementById("homePage").classList.add("hidden");
+    document.getElementById("libraryPage").classList.remove("hidden");
+}
+
+function goHome() {
+    document.getElementById("libraryPage").classList.add("hidden");
+    document.getElementById("homePage").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
