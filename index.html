@@ -194,9 +194,12 @@ body {
 
     /* картинка */
     .card img {
-        height: 160px;
-        object-fit: cover;
-    }
+    width: 100%;
+    height: 160px;
+    object-fit: contain; /* 👈 показывает ВСЮ картинку */
+    background: rgba(255,255,255,0.05); /* красиво если есть пустоты */
+    padding: 5px;
+}
 
     /* страница книг */
     #libraryPage {
