@@ -6,16 +6,16 @@
 <title>School Library</title>
 
 <style>
-/* ===== Общие стили ===== */
-body {
+html, body {
     margin: 0;
+    height: 100%;
     font-family: Arial, sans-serif;
-    background: url(pexels-ali-haider-2158504419-35600382.jpg) center/cover no-repeat;
-    height: 100vh;
     color: white;
+    background: url(pexels-ali-haider-2158504419-35600382.jpg) center/cover no-repeat;
+    background-attachment: fixed;
 }
 
-/* затемнение */
+/* Overlay */
 .overlay {
     position: fixed;
     width: 100%;
@@ -23,71 +23,41 @@ body {
     background: rgba(0,0,0,0.6);
 }
 
-/* страницы */
+/* Страницы */
 .page {
     position: absolute;
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    overflow-y: auto; /* прокрутка, если много карточек */
+    align-items: center;
+    overflow-y: auto;
 }
+.hidden { display: none; }
 
-#libraryPage {
-    justify-content: flex-start; /* размещаем контент сверху */
-    padding-top: 80px;           /* отступ сверху */
-    padding-bottom: 40px;        /* отступ снизу */
-}
-
-/* скрытая страница */
-.hidden {
-    display: none;
-}
-
-/* ===== Главная ===== */
-.home h1 {
-    font-size: 40px;
-    margin-bottom: 20px;
-}
-
-.home p {
-    max-width: 500px;
-    text-align: center;
-    color: #ddd;
-}
-
+/* Главная */
+.home { justify-content: center; text-align: center; }
+.home h1 { font-size: 40px; }
+.home p { max-width: 500px; color: #ddd; }
 .start-btn {
     margin-top: 20px;
     padding: 12px 20px;
-    border: none;
     border-radius: 10px;
+    border: none;
     background: white;
-    color: #333;
-    cursor: pointer;
     font-weight: bold;
-    transition: 0.3s;
+    cursor: pointer;
 }
 
-.start-btn:hover {
-    background: #f0f0f0;
-}
-
-/* ===== Книги ===== */
+/* Карточки */
 .container {
+    margin-top: 90px;
+    width: 80%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 50px;
-    width: 80%;
-    padding: 0px;
-    box-sizing: border-box;
-    justify-items: center; /* центруем карточки в колонках */
+    gap: 40px;
 }
-
-/* карточки */
 .card {
-    width: 100%;
     background: rgba(255,255,255,0.1);
     backdrop-filter: blur(15px);
     border-radius: 20px;
@@ -95,190 +65,91 @@ body {
     text-align: center;
     transition: 0.3s;
 }
-
-.card:hover {
-    transform: scale(1.05);
-}
-
-.card img {
-    width: 100%;
-    border-radius: 15px;
-}
-
-.card h3 {
-    margin: 10px 0 5px 0;
-}
-
+.card:hover { transform: scale(1.05); }
+.card img { width: 100%; height: 160px; object-fit: contain; border-radius: 15px; }
 .card button {
     margin-top: 10px;
-    padding: 8px;
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
     border: none;
-    border-radius: 8px;
     background: white;
-    cursor: pointer;
     font-weight: bold;
-    transition: 0.3s;
+    cursor: pointer;
 }
 
-.card button:hover {
-    background: #f0f0f0;
-}
-
-/* кнопка назад */
+/* Кнопки */
 .back-btn {
-    position: absolute;
+    position: fixed;
     top: 20px;
     left: 20px;
     padding: 10px 15px;
-    border: none;
     border-radius: 10px;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border: none;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+}
+
+/* Кнопки классов аккордеон */
+.class-switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.class-switch button {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: none;
     background: rgba(255,255,255,0.2);
     color: white;
     backdrop-filter: blur(10px);
     cursor: pointer;
-    transition: 0.3s;
+}
+.sub-classes {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    margin-left: 10px;
 }
 
-.back-btn:hover {
-    background: rgba(255,255,255,0.4);
-}
-
-
-
-    
-    /* ===== 📱 МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+/* Мобильная версия */
 @media (max-width: 768px) {
-
-    body {
-        background-position: center;
-    }
-
-    /* заголовок */
-    .home h1 {
-        font-size: 28px;
-    }
-
-    .home p {
-        font-size: 14px;
-        padding: 0 20px;
-    }
-
-    .start-btn {
-        width: 80%;
-        padding: 14px;
-        font-size: 16px;
-    }
-
-    /* контейнер */
-    .container {
-        grid-template-columns: 1fr; /* 1 колонка */
-        width: 90%;
-        gap: 25px;
-    }
-
-    /* карточки */
-    .card {
-        padding: 12px;
-        border-radius: 18px;
-    }
-
-    .card h3 {
-        font-size: 18px;
-    }
-
-    .card button {
-        width: 100%;
-        padding: 12px;
-        font-size: 14px;
-    }
-
-    /* картинка */
-    .card img {
-    width: 100%;
-    height: 160px;
-    object-fit: contain; /* 👈 показывает ВСЮ картинку */
-    background: rgba(255,255,255,0.05); /* красиво если есть пустоты */
-    padding: 5px;
+    .container { width: 90%; gap: 20px; }
+    .card img { height: 140px; }
+    .home h1 { font-size: 28px; }
 }
-
-    /* страница книг */
-    #libraryPage {
-        padding-top: 100px;
-    }
-
-    /* кнопка назад (фиксированная 👇) */
-    .back-btn {
-        position: fixed;
-        top: 15px;
-        left: 15px;
-        z-index: 10;
-        padding: 12px 16px;
-        font-size: 14px;
-    }
-}
-
-/* 📱 Очень маленькие экраны */
-@media (max-width: 400px) {
-    .card img {
-        height: 140px;
-    }
-
-    .home h1 {
-        font-size: 24px;
-    }
-}
-
-
-
-    
 </style>
 </head>
-
 <body>
+    
+
 
 <div class="overlay"></div>
 
-<!-- 🔹 Главная страница -->
+<!-- Главная -->
 <div class="page home" id="homePage">
-    <h1>📚 HTPV's School Library</h1>
-    <p>
-        Добро пожаловать в онлайн библиотеку нашей школы!  
-        Здесь можно найти материалы и книги по различным предметам: физика, математика, химия и другие.
-    </p>
+    <h1>📚 School Library</h1>
+    <p>Добро пожаловать в онлайн библиотеку нашей школы! Здесь можно найти материалы и книги по различным предметам: физика, математика, химия и другие.</p>
     <button class="start-btn" onclick="openLibrary()">Книги</button>
 </div>
 
-<!-- 🔹 Страница с предметами -->
+<!-- Предметы -->
 <div class="page hidden" id="libraryPage">
-
     <button class="back-btn" onclick="goHome()">← Главное меню</button>
-
     <div class="container">
-
+        <div class="card"><img src="physics.png"><h3>Физика</h3><button onclick="openBooks('physics')">Открыть</button></div>
+        <div class="card"><img src="Gemini_Generated_Image_t21q71t21q71t21q.png"><h3>Математика</h3><button onclick="openBooks('math')">Открыть</button></div>
+        <div class="card"><img src="chem.png"><h3>Химия</h3><button onclick="openBooks('chem')">Открыть</button></div>
         <div class="card">
             <img src="CS.png" alt="Информатика">
             <h3>Информатика</h3>
             <button>Открыть</button>
         </div>
-
-        <div class="card">
-            <img src="physics.png" alt="Физика" >
-            <h3>Физика</h3>
-            <button>Открыть</button>
-        </div>
-
-        <div class="card">
-            <img src="Gemini_Generated_Image_t21q71t21q71t21q.png" alt="Математика" >
-            <h3>Математика</h3>
-            <button>Открыть</button>
-        </div>
-
-        <div class="card">
-            <img src="chem.png" alt="Химия">
-            <h3>Химия</h3>
-            <button>Открыть</button>
-        </div>
-
         <div class="card">
             <img src="Bio.png" alt="Биология">
             <h3>Биология</h3>
@@ -332,21 +203,95 @@ body {
             <h3>ИТН</h3>
             <button>Открыть</button>
         </div>
-
     </div>
-
 </div>
 
-<!-- 🔥 JS -->
+<!-- Книги -->
+<div class="page hidden" id="booksPage">
+    <button class="back-btn" onclick="goBack()">← Назад</button>
+    <div class="class-switch" id="classSwitch"></div>
+    <div class="container" id="booksContainer"></div>
+</div>
+
 <script>
-function openLibrary() {
-    document.getElementById("homePage").classList.add("hidden");
-    document.getElementById("libraryPage").classList.remove("hidden");
+// ===== Переходы =====
+function openLibrary() { document.getElementById("homePage").classList.add("hidden"); document.getElementById("libraryPage").classList.remove("hidden"); }
+function goHome() { document.getElementById("libraryPage").classList.add("hidden"); document.getElementById("homePage").classList.remove("hidden"); }
+function goBack() { document.getElementById("booksPage").classList.add("hidden"); document.getElementById("libraryPage").classList.remove("hidden"); }
+
+// ===== Данные =====
+let currentSubject = "";
+const booksData = {
+    physics: {
+        7:[{title:"Физика 7 класс А.В Пёрышкин",img:"Ph7.jpg"},{title:"Сборник задач Волков 7-9 класс",img:"PhV7.jpg"}, {title:"Сборник задач Волков 7-9 класс",img:"PhL7.jpg"}],
+        8:[{title:"Физика 8 класс",img:"Ph8.jpg"}],
+        9:[{title:"Физика 9 класс",img:"Ph9.jpg"}],
+        10: [
+            { title: "Физика 10 класс", img: "Ph10.jpg" }
+        ],
+        11: [
+            { title: " ", img: ""}
+        ], 
+        Прочие: [
+            { title: " " , img: ""}
+        ]
+    },
+    math: {
+        7:[{title:"Математика 7 класс",img:"Math7.jpg"}],
+        8:[{title:"Математика 8 класс",img:"Math8.jpg"}],
+        9:[{title:"Математика 9 класс",img:"Math9.jpg"}]
+    },
+    chem: {
+        7:[{title:"Химия 7 класс",img:"Chem7.jpg"}]
+    }
+};
+
+// ===== Открыть книги =====
+function openBooks(subject) {
+    currentSubject = subject;
+    document.getElementById("libraryPage").classList.add("hidden");
+    document.getElementById("booksPage").classList.remove("hidden");
+    generateClassButtons();
 }
 
-function goHome() {
-    document.getElementById("libraryPage").classList.add("hidden");
-    document.getElementById("homePage").classList.remove("hidden");
+// ===== Генерация кнопок классов (аккордеон) =====
+function generateClassButtons() {
+    const container = document.getElementById("classSwitch");
+    container.innerHTML = "";
+    const classes = Object.keys(booksData[currentSubject]).sort((a,b)=>a-b);
+    if(classes.length===0) return;
+
+    const mainBtn = document.createElement("button");
+    mainBtn.textContent = classes[0];
+    container.appendChild(mainBtn);
+
+    const subContainer = document.createElement("div");
+    subContainer.classList.add("sub-classes");
+    container.appendChild(subContainer);
+
+    classes.slice(1).forEach(cls=>{
+        const btn=document.createElement("button");
+        btn.textContent=cls;
+        btn.onclick=()=>changeClass(cls);
+        subContainer.appendChild(btn);
+    });
+
+    mainBtn.onclick=()=>{
+        subContainer.style.display=subContainer.style.display==="flex"?"none":"flex";
+        changeClass(classes[0]);
+    }
+
+    changeClass(classes[0]);
+}
+
+// ===== Смена класса =====
+function changeClass(cls) {
+    const container=document.getElementById("booksContainer");
+    container.innerHTML="";
+    const books=booksData[currentSubject]?.[cls]||[];
+    books.forEach(book=>{
+        container.innerHTML+=`<div class="card"><img src="${book.img}"><h3>${book.title}</h3><button>Читать</button></div>`;
+    });
 }
 </script>
 
